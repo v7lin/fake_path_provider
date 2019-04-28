@@ -21,7 +21,8 @@ A powerful path_provider plugin for Flutter.
 
 ## flutter
 
-#### snapshot
+* snapshot
+
 ````
 dependencies:
   fake_path_provider:
@@ -29,17 +30,15 @@ dependencies:
       url: https://github.com/v7lin/fake_path_provider.git
 ````
 
-#### release
-````
-latestVersion = 0.0.1
-````
+* release
 
 ````
 dependencies:
-  fake_path_provider: ^${latestVersion}
+  fake_path_provider: ^${latestTag}
 ````
 
-#### example
+* example
+
 [示例](./example/lib/main.dart)
 
 ## Getting Started
