@@ -10,6 +10,14 @@ steps:
   commands:
   - flutter packages get
 
+#- name: build_runner
+#  image: v7lin/flutter:1.5.4-hotfix.2-stable
+#  volumes:
+#  - name: pub-cache
+#    path: /opt/flutter/.pub-cache
+#  commands:
+#  - flutter packages pub run build_runner build
+
 - name: format
   image: v7lin/flutter:1.5.4-hotfix.2-stable
   volumes:
@@ -32,17 +40,28 @@ steps:
   - name: pub-cache
     path: /opt/flutter/.pub-cache
   commands:
-  - pushd example/
+  - flutter test --coverage
+  - cd example/
   - flutter test
 
-#- name: proguard
-#  image: v7lin/flutter:1.5.4-hotfix.2-stable
-#  volumes:
-#  - name: pub-cache
-#    path: /opt/flutter/.pub-cache
-#  commands:
-#  - pushd example/
-#  - flutter build apk
+- name: proguard
+  image: v7lin/flutter:1.5.4-hotfix.2-stable
+  volumes:
+  - name: pub-cache
+    path: /opt/flutter/.pub-cache
+  - name: gradle
+    path: /root/.gradle
+  commands:
+  - cd example/
+  - flutter build apk
+
+#- name: coverage
+#  image: plugins/codecov:2.0.3
+#  settings:
+#    token:
+#      from_secret: CODECOV_TOKEN
+#    files:
+#    - ./coverage/lcov.info
 
 - name: publish-check
   image: v7lin/flutter:1.5.4-hotfix.2-stable
@@ -51,7 +70,12 @@ steps:
     path: /opt/flutter/.pub-cache
   commands:
   - flutter packages pub publish --dry-run
+  when:
+    event:
+    - tag
 
 volumes:
 - name: pub-cache
+  temp: {}
+- name: gradle
   temp: {}

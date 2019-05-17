@@ -1,6 +1,7 @@
 # fake_path_provider
 
 [![Build Status](https://cloud.drone.io/api/badges/v7lin/fake_path_provider/status.svg)](https://cloud.drone.io/v7lin/fake_path_provider)
+[![Codecov](https://codecov.io/gh/v7lin/fake_path_provider/branch/master/graph/badge.svg)](https://codecov.io/gh/v7lin/fake_path_provider)
 [![GitHub Tag](https://img.shields.io/github/tag/v7lin/fake_path_provider.svg)](https://github.com/v7lin/fake_path_provider/releases)
 [![Pub Package](https://img.shields.io/pub/v/fake_path_provider.svg)](https://pub.dartlang.org/packages/fake_path_provider)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://github.com/v7lin/fake_path_provider/blob/master/LICENSE)
