@@ -12,13 +12,19 @@ class PathProvider {
   static const MethodChannel _channel =
       MethodChannel('v7lin.github.io/fake_path_provider');
 
-  static Future<Directory> getTemporaryDirectory() async {
-    String path = await _channel.invokeMethod(_METHOD_GETTEMPORARYDIRECTORY);
-    return Directory(path);
+  static Future<Directory> getTemporaryDirectory() {
+    return _channel
+        .invokeMethod(_METHOD_GETTEMPORARYDIRECTORY)
+        .then((dynamic path) {
+      return Directory(path as String);
+    });
   }
 
-  static Future<Directory> getDocumentsDirectory() async {
-    String path = await _channel.invokeMethod(_METHOD_GETDOCUMENTSDIRECTORY);
-    return Directory(path);
+  static Future<Directory> getDocumentsDirectory() {
+    return _channel
+        .invokeMethod(_METHOD_GETDOCUMENTSDIRECTORY)
+        .then((dynamic path) {
+      return Directory(path as String);
+    });
   }
 }
