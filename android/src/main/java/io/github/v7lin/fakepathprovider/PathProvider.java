@@ -18,7 +18,8 @@ public final class PathProvider {
 
     public static File getTemporaryDirectory(Context context) {
         File cacheDir = null;
-        if (context.checkPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE, Process.myPid(), Process.myUid()) == PackageManager.PERMISSION_GRANTED) {
+        if (context.checkPermission(Manifest.permission.READ_EXTERNAL_STORAGE, Process.myPid(), Process.myUid()) == PackageManager.PERMISSION_GRANTED
+                && context.checkPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE, Process.myPid(), Process.myUid()) == PackageManager.PERMISSION_GRANTED) {
             cacheDir = context.getExternalCacheDir();
         }
         if (cacheDir == null) {
@@ -27,9 +28,14 @@ public final class PathProvider {
         return cacheDir;
     }
 
+    public static File getDocumentsDirectory(Context context) {
+        return getFilesDirectory(context, Environment.DIRECTORY_DOCUMENTS);
+    }
+
     public static File getFilesDirectory(Context context, @Nullable String type) {
         File filesDir = null;
-        if (context.checkPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE, Process.myPid(), Process.myUid()) == PackageManager.PERMISSION_GRANTED) {
+        if (context.checkPermission(Manifest.permission.READ_EXTERNAL_STORAGE, Process.myPid(), Process.myUid()) == PackageManager.PERMISSION_GRANTED
+                && context.checkPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE, Process.myPid(), Process.myUid()) == PackageManager.PERMISSION_GRANTED) {
             filesDir = context.getExternalFilesDir(type);
         }
         if (filesDir == null) {
@@ -42,9 +48,5 @@ public final class PathProvider {
             }
         }
         return filesDir;
-    }
-
-    public static File getDocumentsDirectory(Context context) {
-        return getFilesDirectory(context, Environment.DIRECTORY_DOCUMENTS);
     }
 }
