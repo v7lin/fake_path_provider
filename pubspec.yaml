@@ -1,6 +1,6 @@
 name: fake_path_provider
 description: A powerful path_provider plugin for Flutter.
-version: 0.1.3
+version: 0.2.0
 author: v7lin <v7lin@qq.com>
 homepage: https://github.com/v7lin/fake_path_provider
 
